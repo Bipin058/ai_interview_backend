@@ -1,0 +1,6 @@
+.env.local
+frontend.py
+backend copy 2.py
+backend copy.py
+__pycache__
+myenv/
