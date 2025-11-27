@@ -1,4 +1,4 @@
-.env.local
+.env
 frontend.py
 backend copy 2.py
 backend copy.py

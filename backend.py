@@ -11,51 +11,53 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 app = FastAPI()
 
 
 # ---------------- EMAIL SENDER FUNCTION ---------------- #
 
 def send_email(receiver_email: str, name: str, password: str):
+    """
+    Sends login credentials via SendGrid.
+    Requires environment variables:
+    - SENDER_EMAIL (from email)
+    - SENDGRID_API_KEY
+    """
     sender_email = os.environ.get("SENDER_EMAIL")
-    sender_password = os.environ.get("SENDER_PASSWORD")         # CHANGE THIS (Use Gmail App Password)
+    sendgrid_api_key = os.environ.get("SENDGRID_API_KEY")
+
+    # if not sender_email or not sendgrid_api_key:
+    #     raise ValueError("SENDER_EMAIL or SENDGRID_API_KEY not set in environment variables")
 
     subject = "Your Login Credentials - AI Interview System"
 
-    body = f"""
-Hello {name},
+    html_content = f"""
+    <p>Hello {name},</p>
+    <p>Your interview profile has been created successfully.</p>
+    <p>
+    Here are your login details:<br>
+    Interview link: https://your-frontend-url.com<br>
+    Email: {receiver_email}<br>
+    Password: {password}
+    </p>
+    <p>Regards,<br>AI Interview System</p>
+    """
 
-Your interview profile has been created successfully.
-
-Here are your login details:
-Interview link: https://192.168.1.196:3000
-Email: {receiver_email}
-Password: {password}
-
-You will use these credentials to log in and take your AI interview.
-
-Regards,
-AI Interview System
-"""
-
-    msg = MIMEMultipart()
-    msg["From"] = sender_email
-    msg["To"] = receiver_email
-    msg["Subject"] = subject
-
-    msg.attach(MIMEText(body, "plain"))
+    message = Mail(
+        from_email=sender_email,
+        to_emails=receiver_email,
+        subject=subject,
+        html_content=html_content
+    )
 
     try:
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.starttls()
-            server.login(sender_email, sender_password)
-            server.send_message(msg)
-
-        print("Email sent successfully!")
+        sg = SendGridAPIClient(sendgrid_api_key)
+        response = sg.send(message)
+        print(f"Email sent successfully! Status code: {response.status_code}")
     except Exception as e:
-        print("Error sending email:", e)
-
+        print("Error sending email:", str(e))
 
 # ---------------- REQUEST MODELS ---------------- #
 
