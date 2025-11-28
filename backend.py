@@ -38,7 +38,7 @@ def send_email(receiver_email: str, name: str, password: str):
     <p>Your interview profile has been created successfully.</p>
     <p>
     Here are your login details:<br>
-    Interview link: https://your-frontend-url.com<br>
+    Interview link: https://ai-interview-frontend-0ou3.onrender.com/<br>
     Email: {receiver_email}<br>
     Password: {password}
     </p>
