@@ -13,6 +13,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from summary import summarize_resume
 app = FastAPI()
 
 
@@ -93,12 +94,13 @@ def add_user(data: UserRequest, db: Session = Depends(get_db)):
     
     
     generated_password = generate_password()
-
+    summarized_resume = summarize_resume(data.resume_extracted)
     user = User(
         name=data.name,
         email=data.email,
-        resume_extracted=data.resume_extracted,
-        password=generated_password
+        resume_extracted=summarized_resume,
+        password=generated_password,
+        full_resume=data.resume_extracted
     )
 
     db.add(user)
