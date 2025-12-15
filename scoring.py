@@ -34,13 +34,32 @@ def score_conversation(conversation_text: str) -> dict:
     # JSON-enforced prompt
     prompt_template = PromptTemplate(
         input_variables=["conversation_text", "scoring_instructions"],
-        template="""You are an AI evaluator. Read the conversation below between AI interviewer(ASSISTANT) and candidate(USER) :
+        template="""
+You are an AI evaluator. You will receive a conversation transcript between an AI interviewer (ASSISTANT) and a candidate (USER). 
+The transcript is generated using STT (speech-to-text) and LLMs, so it may contain:
+- Fragmented sentences  
+- Repeated segments  
+- Filler words  
+- Missing words  
+- Incorrect or noisy transcriptions  
+- Spelling or grammatical errors not caused by the candidate  
+- Sudden ending messages such as camera-off warnings  
 
-conversation_text:
+Your job is to evaluate ONLY the *candidate’s performance*, ignoring STT noise.
+
+###conversation_text:
 {conversation_text}
 
-Instructions for scoring:
+###Instructions for scoring:
 {scoring_instructions}
+
+### IMPORTANT:
+- Completely ignore spelling mistakes, incorrect transcriptions, or repeated tokens caused by STT.  
+- Evaluate based on the *intended meaning* of the candidate’s responses.  
+- Ignore system-generated warnings (e.g., camera off) and do NOT penalize the candidate.  
+- Do not judge the interviewer’s performance—only the candidate’s.
+
+### OUTPUT FORMAT
 
 Return ONLY a valid JSON object in this exact format:
 

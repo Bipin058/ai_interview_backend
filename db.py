@@ -39,7 +39,7 @@ class User(Base):
     conversation_text = Column(Text, nullable=True)
     score = Column(Integer, nullable=True)
     analysis = Column(Text, nullable=True)
-    full_resume= Column(Text, nullable=False)
+    full_resume= Column(Text, nullable=True)
 # Dependency for FastAPI routes
 def get_db():
     db = SessionLocal()

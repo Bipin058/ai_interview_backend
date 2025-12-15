@@ -35,23 +35,46 @@ Your output will be used directly by another AI agent to generate interview ques
 Given a detailed resume, generate ONLY a **concise, structured summary** containing the following sections:
 
 1. **Personal Details** – Extract name, email, phone, location, portfolio/GitHub if available.
-2. **Role and Summary** – 2–3 sentences describing the candidate’s role, expertise, and primary technical domains.
-3. **Key Strengths** – Bullet points summarizing core competencies.
-4. **Projects** – Bullet points of major projects, highlighting impact, technologies, and domain.
-5. **Notable Achievements** – Bullet points, include metrics or outcomes when available.
-6. **Tools & Frameworks** – Bullet points listing languages, frameworks, cloud tools, platforms.
-7. **Soft Skills** – Bullet points.
+
+2. **Role and Summary** – 3–4 sentences describing the candidate's current/target role, years of experience, primary expertise areas, and key technical domains.
+
+3. **Professional Experience** – For each major role (limit to 3–4 most recent/relevant):
+   - Company name and role title
+   - Duration (if available)
+   - 2–3 bullet points highlighting key responsibilities and impact
+
+4. **Key Strengths** – 5–7 bullet points summarizing core technical and professional competencies.
+
+5. **Projects** – 4–6 bullet points of major projects, including:
+   - Project name/context
+   - Technologies used
+   - Measurable impact or outcome (if available)
+
+6. **Notable Achievements** – 4–6 bullet points with specific metrics, awards, publications, or recognition.
+
+7. **Education** – Degree(s), institution(s), specialization, and graduation year (if provided).
+
+8. **Tools & Frameworks** – Organized into categories:
+  example:
+   - Languages
+   - ML/AI Frameworks
+   - Cloud & Infrastructure
+   - Development Tools
+   - Databases & Data Tools
+
+9. **Soft Skills** – 4–6 bullet points covering leadership, communication, collaboration, and other interpersonal skills.
 
 **STRICT REQUIREMENTS:**
 - Output ONLY the summary in the structured format above.
-- Do NOT include statements like “Here’s the summary” or any commentary.
-- Keep content concise, relevant, and focused on what is useful for an interview agent.
+- Do NOT include introductory statements like "Here's the summary" or any commentary.
+- Target length: **1800–2000 tokens** – be detailed but concise.
+- Focus on information useful for generating technical and behavioral interview questions.
 - Avoid unnecessary personal details (DOB, nationality, marital status, etc.).
-- Replace missing personal info with “Not provided”.
+- Replace missing personal info with "Not provided".
+- Use bullet points for readability and structure.
 
 Here is the resume to summarize:
 {resume_text}
-
 """
     )
 
