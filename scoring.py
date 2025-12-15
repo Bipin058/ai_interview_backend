@@ -29,7 +29,7 @@ def score_conversation(conversation_text: str) -> dict:
         raise ValueError("GOOGLE_API_KEY environment variable is not set")
 
     llm = ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",
+        model="gemini-2.5-flash",
         temperature=0.3,
         timeout=60,  # 60 second timeout
         max_retries=2,  # Retry twice on failure
