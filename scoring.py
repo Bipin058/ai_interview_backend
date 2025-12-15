@@ -8,7 +8,9 @@ from langchain_core.prompts import PromptTemplate
 
 from prompt import SCORING_PROMPT
 
+# Load from .env.local for local dev, but Render uses environment variables directly
 load_dotenv(".env.local")
+load_dotenv()  # Also try .env file
 
 
 def score_conversation(conversation_text: str) -> dict:
@@ -24,11 +26,13 @@ def score_conversation(conversation_text: str) -> dict:
 
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        raise ValueError("GOOGLE_API_KEY missing in .env.local")
+        raise ValueError("GOOGLE_API_KEY environment variable is not set")
 
     llm = ChatGoogleGenerativeAI(
-        model="gemini-flash-latest",
+        model="gemini-1.5-flash",
         temperature=0.3,
+        timeout=60,  # 60 second timeout
+        max_retries=2,  # Retry twice on failure
     )
 
     # JSON-enforced prompt

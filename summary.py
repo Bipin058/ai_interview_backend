@@ -54,20 +54,17 @@ Given a detailed resume, generate ONLY a **concise, structured summary** contain
 
 7. **Education** – Degree(s), institution(s), specialization, and graduation year (if provided).
 
-8. **Tools & Frameworks** – Organized into categories:
-  example:
-   - Languages
-   - ML/AI Frameworks
-   - Cloud & Infrastructure
-   - Development Tools
-   - Databases & Data Tools
+8. **Skills & Tools** – Categorize based on the field:
+   - For technical roles: Programming languages, frameworks, cloud tools, databases
+   - For non-technical roles: Software proficiency, industry-specific tools, methodologies
+   - Include any relevant certifications or specialized training
 
 9. **Soft Skills** – 4–6 bullet points covering leadership, communication, collaboration, and other interpersonal skills.
 
 **STRICT REQUIREMENTS:**
 - Output ONLY the summary in the structured format above.
 - Do NOT include introductory statements like "Here's the summary" or any commentary.
-- Target length: **1800–2000 tokens** – be detailed but concise.
+- Target length: **1500–1800 tokens** – be detailed but concise.
 - Focus on information useful for generating technical and behavioral interview questions.
 - Avoid unnecessary personal details (DOB, nationality, marital status, etc.).
 - Replace missing personal info with "Not provided".

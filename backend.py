@@ -147,5 +147,13 @@ def score_conversation(data: ScoreRequest, db: Session = Depends(get_db)):
             "analysis": result["analysis"]
         }
 
+    except ValueError as e:
+        # API key or validation errors
+        print(f"Scoring validation error for {user.email}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Scoring validation error: {str(e)}")
     except Exception as e:
+        # Log the full error for debugging
+        print(f"Scoring failed for {user.email}: {type(e).__name__}: {str(e)}")
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Error scoring: {str(e)}")
