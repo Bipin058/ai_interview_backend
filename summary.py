@@ -36,21 +36,22 @@ Given a detailed resume, generate ONLY a **concise, structured summary** contain
 
 1. **Personal Details** – Extract name, email, phone, location, portfolio/GitHub if available.
 
-2. **Role and Summary** – 3–4 sentences describing the candidate's current/target role, years of experience, primary expertise areas, and key technical domains.
+2. **Role and Summary** – 2–4 sentences describing the candidate's current/target role, years of experience, primary expertise areas, and key technical domains.
 
 3. **Professional Experience** – For each major role (limit to 3–4 most recent/relevant):
    - Company name and role title
    - Duration (if available)
-   - 2–3 bullet points highlighting key responsibilities and impact
+   - 1–3 bullet points highlighting key responsibilities and impact (only if details are provided in the resume)
 
-4. **Key Strengths** – 5–7 bullet points summarizing core technical and professional competencies.
+4. **Key Strengths** – 3–7 bullet points summarizing core technical and professional competencies found in the resume.
 
-5. **Projects** – 4–6 bullet points of major projects, including:
-   - Project name/context
-   - Technologies used
-   - Measurable impact or outcome (if available)
+5. **Projects** – ONLY if projects are explicitly mentioned in the resume:
+   - 2–6 bullet points of projects with name/context, technologies, and outcomes
+   - If no projects are listed, write "Not provided"
 
-6. **Notable Achievements** – 4–6 bullet points with specific metrics, awards, publications, or recognition.
+6. **Notable Achievements** – ONLY if achievements are explicitly mentioned:
+   - 2–6 bullet points with specific metrics, awards, publications, or recognition
+   - If no achievements are listed, write "Not provided"
 
 7. **Education** – Degree(s), institution(s), specialization, and graduation year (if provided).
 
@@ -59,12 +60,16 @@ Given a detailed resume, generate ONLY a **concise, structured summary** contain
    - For non-technical roles: Software proficiency, industry-specific tools, methodologies
    - Include any relevant certifications or specialized training
 
-9. **Soft Skills** – 4–6 bullet points covering leadership, communication, collaboration, and other interpersonal skills.
+9. **Soft Skills** – 2–6 bullet points covering leadership, communication, collaboration, and other interpersonal skills (only if evident from the resume).
 
-**STRICT REQUIREMENTS:**
+**CRITICAL REQUIREMENTS:**
 - Output ONLY the summary in the structured format above.
 - Do NOT include introductory statements like "Here's the summary" or any commentary.
-- Target length: **1500–1800 tokens** – be detailed but concise.
+- **NEVER fabricate, infer, or add information not explicitly present in the resume.**
+- **The summary MUST be shorter than or equal in length to the original resume.**
+- For short resumes (under 800 tokens): Keep the summary proportionally brief and concise.
+- For long resumes (over 3000 tokens): Target 1500–1800 tokens maximum.
+- If a section has no information in the resume, use "Not provided" instead of making up content.
 - Focus on information useful for generating technical and behavioral interview questions.
 - Avoid unnecessary personal details (DOB, nationality, marital status, etc.).
 - Replace missing personal info with "Not provided".
